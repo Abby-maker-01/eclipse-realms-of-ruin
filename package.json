@@ -1,0 +1,12 @@
+{
+  "name": "eclipse-realms-of-ruin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Eclipse Realms of Ruin 2D side-scrolling RPG and WebSocket multiplayer server",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
