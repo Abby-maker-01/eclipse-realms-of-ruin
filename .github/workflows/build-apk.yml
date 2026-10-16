@@ -20,12 +20,30 @@ jobs:
         with:
           node-version: 20
 
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
       - name: Install dependencies
         run: npm install
 
-      - name: Build Android APK
+      - name: Check web files
         run: |
-          npx cap sync android
+          test -f www/index.html || {
+            echo "ERROR: www/index.html tidak ditemukan"
+            exit 1
+          }
+
+      - name: Create Android platform
+        run: npx cap add android
+
+      - name: Sync Capacitor
+        run: npx cap sync android
+
+      - name: Build APK
+        run: |
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
